@@ -9,6 +9,8 @@
 import UIKit
 import CoreML
 import Vision
+import SwiftyJSON
+import Alamofire
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -55,7 +57,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             guard let observations = request.results as? [VNClassificationObservation] else {
                 fatalError("There's no observations")
             }
-            print(observations.first)
+            self.navigationItem.title = observations.first?.identifier.capitalized
         }
 
         let handler = VNImageRequestHandler(ciImage: ciimage)
