@@ -21,11 +21,21 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vPg-2t-R8F">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pick a picture to identify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrS-ur-3JD">
+                                <rect key="frame" x="0.0" y="64" width="375" height="163"/>
+                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="yrS-ur-3JD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1vB-Fi-OMU"/>
+                            <constraint firstItem="yrS-ur-3JD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8UN-SO-Aze"/>
                             <constraint firstItem="vPg-2t-R8F" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="RzF-A4-6hc"/>
                             <constraint firstItem="vPg-2t-R8F" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Uqm-ek-IVp"/>
+                            <constraint firstItem="yrS-ur-3JD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Zft-aH-EZ7"/>
                             <constraint firstItem="vPg-2t-R8F" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bgu-6e-t4K"/>
                             <constraint firstItem="vPg-2t-R8F" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="rwv-YD-IkR"/>
                         </constraints>
@@ -39,6 +49,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="descriptionLabel" destination="yrS-ur-3JD" id="8Td-XD-lP6"/>
                         <outlet property="imageViewController" destination="vPg-2t-R8F" id="IQf-30-ujQ"/>
                     </connections>
                 </viewController>

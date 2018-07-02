@@ -15,8 +15,10 @@ import Alamofire
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageViewController: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     let imagePicker = UIImagePickerController()
+    let wikipediaURL = "https://en.wikipedia.org/w/api.php"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +59,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             guard let observations = request.results as? [VNClassificationObservation] else {
                 fatalError("There's no observations")
             }
-            self.navigationItem.title = observations.first?.identifier.capitalized
+            guard let flowerName = observations.first?.identifier.capitalized else {
+                fatalError("There's no flower name!")
+            }
+            self.navigationItem.title = flowerName
+            self.requestInfo(with: flowerName)
         }
 
         let handler = VNImageRequestHandler(ciImage: ciimage)
@@ -67,6 +73,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         catch {
             print(error)
+        }
+    }
+    
+    func requestInfo(with flowerName: String) {
+        let parameters: [String:String] = [
+            "format" : "json",
+            "action" : "query",
+            "prop" : "extracts",
+            "exintro" : "",
+            "explaintext" : "",
+            "titles" : flowerName,
+            "indexpageids" : "",
+            "redirects" : "1",
+        ]
+        
+        Alamofire.request(wikipediaURL, method: .get, parameters: parameters).responseJSON { (response) in
+            if response.result.isSuccess {
+                let flowerJSON : JSON = JSON(response.result.value!)
+                let pageId = (flowerJSON["query"]["pages"].dictionary?.keys.first!)!
+                
+                let flowerDescription = flowerJSON["query"]["pages"][pageId]["extract"]
+                
+                self.descriptionLabel.text = flowerDescription.stringValue
+                
+                
+                
+            }
         }
     }
     
