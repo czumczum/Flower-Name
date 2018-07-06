@@ -8,5 +8,6 @@ target 'Flower Name' do
   # Pods for Flower Name
     pod 'Alamofire', '~> 4.7'
     pod 'SwiftyJSON', '~> 4.0'
-
+    pod 'SDWebImage'
+    
 end
